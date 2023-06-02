@@ -14,9 +14,9 @@ class LinkedList {
     return new Node('example data', null)
   }
 
-  nodeList() {
-    return this.head
-  }
+  // nodeList() {
+  //   return this.head
+  // }
 
   append(value) {
     let currentNode = this.head
@@ -62,7 +62,34 @@ class LinkedList {
     }
   }
   at(index) {
-    //loop through object and each loop will be an index g
+    let currentNode = this.head
+    for (let i = 0; i < index; i++) {
+      if (currentNode.nextNode !== null) {
+        currentNode = currentNode.nextNode
+      } else {
+				return null;
+			}
+    }
+		return currentNode
+  }
+
+	pop() {
+    if (!this.head) {
+      throw new Error("Cannot pop from empty list");
+    }
+
+    if (!this.head.nextNode) {
+      this.head = null;
+      return;
+    }
+
+    let currentNode = this.head;
+
+    while (currentNode.nextNode.nextNode !== null) {
+      currentNode = currentNode.nextNode;
+    }
+
+    currentNode.nextNode = null;
   }
 }
 
