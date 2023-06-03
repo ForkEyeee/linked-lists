@@ -67,30 +67,68 @@ class LinkedList {
       if (currentNode.nextNode !== null) {
         currentNode = currentNode.nextNode
       } else {
-				return null;
-			}
+        return null
+      }
     }
-		return currentNode
+    return currentNode
   }
 
-	pop() {
+  pop() {
     if (!this.head) {
-      throw new Error("Cannot pop from empty list");
+      throw new Error('Cannot pop from empty list')
     }
 
     if (!this.head.nextNode) {
-      this.head = null;
-      return;
+      this.head = null
+      return
     }
 
-    let currentNode = this.head;
+    let currentNode = this.head
 
     while (currentNode.nextNode.nextNode !== null) {
-      currentNode = currentNode.nextNode;
+      currentNode = currentNode.nextNode
     }
 
-    currentNode.nextNode = null;
+    currentNode.nextNode = null
+  }
+
+  contains(value) {
+    let currentNode = this.head
+    while (
+      currentNode.nextNode !== null &&
+      currentNode.hasOwnProperty('value')
+    ) {
+      if (currentNode.nextNode.value === value) {
+        return true
+      } else {
+        currentNode = currentNode.nextNode
+      }
+    }
+    return false
+  }
+
+  find(value) {
+    let currentNode = this.head
+    let index = 0
+    while (currentNode !== null) {
+      if (currentNode.value === value) {
+        return index
+      }
+      currentNode = currentNode.nextNode
+      index++
+    }
+    return null
+  }
+
+  toString() {
+    let currentNode = this.head
+    let str = ''
+    while (currentNode) {
+      str += `( ${currentNode.value} ) -> `
+      currentNode = currentNode.nextNode
+    }
+    str += 'null'
+    return str
   }
 }
 
-const test = new LinkedList()
